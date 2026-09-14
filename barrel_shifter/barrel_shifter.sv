@@ -49,9 +49,9 @@ module barrel_shifter #(
             mantissa_out_valid_o      <=  mantissa_in_valid_i;
         end 
         else begin
-            mantissa_out_o            <=  shifted[47:25];
-            {guard_bit_o,round_bit_o} <=  {shifted[24],shifted[23]};
-            sticky_bit_o              <= |shifted[22:0];
+            mantissa_out_o            <=  shifted[EXT_WIDTH-1 -: MANTISSA_BIT_WIDTH];
+            {guard_bit_o,round_bit_o} <=  {shifted[PAD_WIDTH-1], shifted[PAD_WIDTH-2]};
+            sticky_bit_o              <= |shifted[PAD_WIDTH-3:0];
             mantissa_out_valid_o      <=  mantissa_in_valid_i;
         end
     end
